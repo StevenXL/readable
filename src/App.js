@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
+import { Route } from "react-router-dom";
 
 import CategoriesListContainer from "./CategoriesListContainer";
 import PostsListContainer from "./PostsListContainer";
@@ -29,7 +30,7 @@ class App extends Component {
 
         <Row>
           <Col xs={12}>
-            <PostsListContainer />
+            <Route path="/:category?" component={PostsListContainer} />
           </Col>
         </Row>
       </Grid>

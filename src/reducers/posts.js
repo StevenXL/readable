@@ -41,12 +41,16 @@ export const getPostsUndeleted = ({ data }) => {
   return Ramda.filter(isNotDeleted, postsArray);
 };
 
-export const getPostsCurrent = ({ data, sortBy, sortOrder }) => {
+export const getPostsCurrent = ({ data, sortBy, sortOrder }, category) => {
   const notDeletedPosts = getPostsUndeleted({ data });
 
   const sortFunction = calculateSortFunction({ sortBy, sortOrder });
 
-  return Ramda.sort(sortFunction, notDeletedPosts);
+  const sorted = Ramda.sort(sortFunction, notDeletedPosts);
+
+  return category
+    ? Ramda.filter(post => post.category === category, sorted)
+    : sorted;
 };
 
 export const getPostsSortOrder = ({ sortOrder }) => sortOrder;

@@ -1,12 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 // this should return a table with each row representing a category
 const CategoriesListPresenter = ({ categories }) => {
   const toListGroupItem = ({ name }) =>
     <ListGroupItem key={name}>
-      {name}
+      <Link to={`/${name}`}>
+        {name}
+      </Link>
     </ListGroupItem>;
 
   return (

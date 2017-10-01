@@ -11,7 +11,8 @@ export const getCategories = state =>
 
 export const getPosts = state => fromPosts.getPosts(state.posts);
 
-export const getPostsCurrent = state => fromPosts.getPostsCurrent(state.posts);
+export const getPostsCurrent = ({ state, category }) =>
+  fromPosts.getPostsCurrent(state.posts, category);
 
 export const getPostsSortOrder = state =>
   fromPosts.getPostsSortOrder(state.posts);
