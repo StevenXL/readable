@@ -1,16 +1,18 @@
 import React from "react";
-import { Route } from "react-router-dom";
 import { Grid, Row, Col } from "react-bootstrap";
+import { Route } from "react-router-dom";
+import PropTypes from "prop-types";
+
 import CategoriesListContainer from "./CategoriesListContainer";
 import PostsListContainer from "./PostsListContainer";
 import NewPost from "./NewPost";
 
-const DefaultView = () => {
+const CategoryView = ({ category }) => {
   return (
     <Grid>
       <Row>
         <Col xs={12}>
-          <h1>Readable</h1>
+          <h1>Category</h1>
         </Col>
       </Row>
       <Row>
@@ -32,4 +34,6 @@ const DefaultView = () => {
   );
 };
 
-export default DefaultView;
+CategoryView.propTypes = { category: PropTypes.string.isRequired };
+
+export default CategoryView;
