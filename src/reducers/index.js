@@ -2,8 +2,9 @@ import { combineReducers } from "redux";
 import categories, * as fromCategories from "./categories";
 import posts, * as fromPosts from "./posts";
 import postForm, * as fromPostForm from "./postForm";
+import comments, * as fromComments from "./comments";
 
-export default combineReducers({ categories, posts, postForm });
+export default combineReducers({ categories, posts, postForm, comments });
 
 // selectors
 export const getCategories = state =>
@@ -22,3 +23,6 @@ export const getPostsSortBy = state => fromPosts.getPostsSortBy(state.posts);
 export const getPostForm = state => fromPostForm.getPostForm(state.postForm);
 
 export const getPost = (state, id) => fromPosts.getPost(state.posts, id);
+
+export const getCommentsForPost = (state, id) =>
+  fromComments.getCommentsForPost(state.comments, id);

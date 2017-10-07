@@ -1,11 +1,32 @@
-import PostViewPresenter from "./PostViewPresenter";
+import React from "react";
 import { connect } from "react-redux";
-import { getPost } from "./reducers";
+
+import { getPost, getCommentsForPost } from "./reducers";
+import { fetchComments } from "./actions";
+import PostViewPresenter from "./PostViewPresenter";
+
+class PostViewContainer extends React.Component {
+  componentDidMount() {
+    const { postId } = this.props;
+    this.props.fetchComments(postId);
+  }
+
+  render() {
+    const { comments, post } = this.props;
+
+    return <PostViewPresenter comments={comments} post={post} />;
+  }
+}
 
 const mapStateToProps = (state, ownProps) => {
-  const post = getPost(state, ownProps.postId);
+  const postId = ownProps.postId;
 
-  return { post };
+  const post = getPost(state, postId);
+  const comments = getCommentsForPost(state, postId);
+
+  return { postId, comments, post };
 };
 
-export default connect(mapStateToProps)(PostViewPresenter);
+const mapDispatchToProps = { fetchComments };
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostViewContainer);

@@ -8,9 +8,12 @@ import {
   resetForm
 } from "./postForm";
 
+import { fetchComments } from "./comments";
+
 export {
   fetchCategories,
   fetchPosts,
+  fetchComments,
   changePostsSortBy,
   postFormChange,
   postPostForm,
