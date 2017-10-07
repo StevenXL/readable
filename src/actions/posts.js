@@ -1,4 +1,8 @@
-import { POSTS_FETCH_SUCCESS, POSTS_CHANGE_SORT_BY } from "./types";
+import {
+  POSTS_FETCH_SUCCESS,
+  POSTS_CHANGE_SORT_BY,
+  POST_DELETE_SUCCESS
+} from "./types";
 
 import { respToJSON, defaultOptions } from "./helpers";
 import Ramda from "ramda";
@@ -20,3 +24,15 @@ export const changePostsSortBy = sortBy => ({
   type: POSTS_CHANGE_SORT_BY,
   payload: sortBy
 });
+
+const deletePostSuccess = postId => ({
+  type: POST_DELETE_SUCCESS,
+  payload: postId
+});
+
+export const deletePost = postId => dispatch => {
+  return fetch(`/posts/${postId}`, {
+    ...defaultOptions,
+    method: "DELETE"
+  }).then(() => dispatch(deletePostSuccess(postId)));
+};

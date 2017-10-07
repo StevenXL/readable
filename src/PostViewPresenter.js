@@ -1,10 +1,11 @@
 import React from "react";
-import { Row, Col } from "react-bootstrap";
+import PropTypes from "prop-types";
+import { Button, Row, Col } from "react-bootstrap";
 
 import PostForm from "./PostForm";
 import CommentsListPresenter from "./CommentsListPresenter";
 
-const PostViewPresenter = ({ post, comments }) => {
+const PostViewPresenter = ({ post, comments, deletePost }) => {
   return (
     <span>
       <Row>
@@ -13,6 +14,12 @@ const PostViewPresenter = ({ post, comments }) => {
             initialValues={post}
             disabledFields={["author", "category"]}
           />
+        </Col>
+
+        <Col xs={12}>
+          <Button bsStyle="danger" onClick={deletePost}>
+            Delete Post
+          </Button>
         </Col>
       </Row>
 
@@ -23,6 +30,12 @@ const PostViewPresenter = ({ post, comments }) => {
       </Row>
     </span>
   );
+};
+
+PostViewPresenter.propTypes = {
+  post: PropTypes.shape({ title: PropTypes.string.isRequired }).isRequired,
+  comments: PropTypes.array.isRequired,
+  deletePost: PropTypes.func.isRequired
 };
 
 export default PostViewPresenter;

@@ -3,7 +3,8 @@ import {
   POST_FORM_POST_SUCCESS,
   POST_FORM_PUT_SUCCESS,
   POSTS_FETCH_SUCCESS,
-  POSTS_CHANGE_SORT_BY
+  POSTS_CHANGE_SORT_BY,
+  POST_DELETE_SUCCESS
 } from "../actions/types";
 
 const ASCEND = "ascend";
@@ -27,6 +28,10 @@ export default (state = initialState, action) => {
           sortOrder: state.sortOrder
         })
       };
+    case POST_DELETE_SUCCESS:
+      const newPost = Ramda.dissoc(action.payload, state.data);
+
+      return { ...state, data: newPost };
     default:
       return state;
   }

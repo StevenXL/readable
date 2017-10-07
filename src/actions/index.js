@@ -1,5 +1,5 @@
 import { fetchCategories } from "./categories";
-import { fetchPosts, changePostsSortBy } from "./posts";
+import { fetchPosts, changePostsSortBy, deletePost } from "./posts";
 import {
   postFormChange,
   postPostForm,
@@ -19,5 +19,6 @@ export {
   postPostForm,
   putPostForm,
   setInitialValues,
-  resetForm
+  resetForm,
+  deletePost
 };
