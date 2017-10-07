@@ -1,5 +1,4 @@
 import React from "react";
-import { Route } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 import CategoriesListContainer from "./CategoriesListContainer";
 import PostsListContainer from "./PostsListContainer";
@@ -20,7 +19,7 @@ const DefaultView = () => {
       </Row>
       <Row>
         <Col xs={12}>
-          <Route path="/:category?" component={PostsListContainer} />
+          <PostsListContainer />
         </Col>
       </Row>
     </span>

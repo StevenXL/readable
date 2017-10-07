@@ -22,7 +22,7 @@ const CategoryView = ({ category }) => {
       </Row>
       <Row>
         <Col xs={12}>
-          <Route path="/:category?" component={PostsListContainer} />
+          <PostsListContainer category={category} />
         </Col>
       </Row>
     </span>

@@ -14,7 +14,7 @@ import withDataFetch from "./withDataFetch";
 const fetchPostListContainer = withDataFetch(PostsListPresenter, "posts");
 
 const mapStateToProps = (state, ownProps) => {
-  const category = Ramda.path(["match", "params", "category"], ownProps);
+  const category = ownProps.category;
   return {
     data: getPostsCurrent({ state, category }),
     sortOrder: getPostsSortOrder(state),
