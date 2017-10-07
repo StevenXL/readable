@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 import categories, * as fromCategories from "./categories";
 import posts, * as fromPosts from "./posts";
-import newPost, * as fromNewPost from "./newPost";
+import postForm, * as fromPostForm from "./postForm";
 
-export default combineReducers({ categories, posts, newPost });
+export default combineReducers({ categories, posts, postForm });
 
 // selectors
 export const getCategories = state =>
@@ -19,4 +19,4 @@ export const getPostsSortOrder = state =>
 
 export const getPostsSortBy = state => fromPosts.getPostsSortBy(state.posts);
 
-export const getNewPost = state => fromNewPost.getNewPost(state.newPost);
+export const getPostForm = state => fromPostForm.getPostForm(state.postForm);

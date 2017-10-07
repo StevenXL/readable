@@ -1,36 +1,38 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getNewPost, getCategories } from "./reducers";
-import { newPostChange, submitNewPost } from "./actions";
+import { getPostForm, getCategories } from "./reducers";
+import { postFormChange, submitPostForm } from "./actions";
 
 import { Button, FormGroup, ControlLabel, FormControl } from "react-bootstrap";
 
 const DEFAULT_SELECT = [{ name: "select" }];
 
-class NewPost extends React.Component {
+class PostForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    const { newPost } = this.props;
+    const { postForm } = this.props;
 
-    this.props.submitNewPost(newPost);
+    this.props.submitPostForm(postForm);
   };
 
   handleChange = field => event =>
-    this.props.newPostChange(field, event.target.value);
+    this.props.postFormChange(field, event.target.value);
 
   validateForm = () => {
-    const { newPost } = this.props;
+    const { postForm } = this.props;
 
-    return newPost.title && newPost.body && newPost.author && newPost.category;
+    return (
+      postForm.title && postForm.body && postForm.author && postForm.category
+    );
   };
 
   render() {
     const valid = this.validateForm();
 
-    const { newPost, categories } = this.props;
-    const selectOptions = newPost.category
+    const { postForm, categories } = this.props;
+    const selectOptions = postForm.category
       ? categories
       : DEFAULT_SELECT.concat(categories);
 
@@ -40,7 +42,7 @@ class NewPost extends React.Component {
           <ControlLabel>Title of Post </ControlLabel>
           <FormControl
             type="text"
-            value={newPost.title}
+            value={postForm.title}
             placeholder="Title"
             name="title"
             onChange={this.handleChange("title")}
@@ -51,7 +53,7 @@ class NewPost extends React.Component {
           <ControlLabel>Body of Post </ControlLabel>
           <FormControl
             type="text"
-            value={newPost.body}
+            value={postForm.body}
             placeholder="Body"
             name="body"
             onChange={this.handleChange("body")}
@@ -62,7 +64,7 @@ class NewPost extends React.Component {
           <ControlLabel>Author of Post </ControlLabel>
           <FormControl
             type="text"
-            value={newPost.author}
+            value={postForm.author}
             placeholder="Author"
             name="author"
             onChange={this.handleChange("author")}
@@ -72,7 +74,7 @@ class NewPost extends React.Component {
         <FormGroup controlId="category">
           <ControlLabel>Category</ControlLabel>
           <FormControl
-            value={newPost.category}
+            value={postForm.category}
             componentClass="select"
             onChange={this.handleChange("category")}
           >
@@ -91,17 +93,17 @@ class NewPost extends React.Component {
 }
 
 // SETTINGS
-NewPost.propTypes = {
-  newPost: PropTypes.shape({ title: PropTypes.string.isRequired }).isRequired,
-  newPostChange: PropTypes.func.isRequired,
+PostForm.propTypes = {
+  postForm: PropTypes.shape({ title: PropTypes.string.isRequired }).isRequired,
+  postFormChange: PropTypes.func.isRequired,
   categories: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
-  newPost: getNewPost(state),
+  postForm: getPostForm(state),
   categories: getCategories(state)
 });
 
-const mapDispatchToProps = { newPostChange, submitNewPost };
+const mapDispatchToProps = { postFormChange, submitPostForm };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewPost);
+export default connect(mapStateToProps, mapDispatchToProps)(PostForm);

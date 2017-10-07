@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 import CategoriesListContainer from "./CategoriesListContainer";
 import PostsListContainer from "./PostsListContainer";
-import NewPost from "./NewPost";
+import PostForm from "./PostForm";
 
 const DefaultView = () => {
   return (
@@ -14,7 +14,7 @@ const DefaultView = () => {
       </Row>
       <Row>
         <Col xs={12}>
-          <NewPost />
+          <PostForm />
         </Col>
       </Row>
       <Row>

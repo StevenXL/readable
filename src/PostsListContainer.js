@@ -1,4 +1,3 @@
-import Ramda from "ramda";
 import { connect } from "react-redux";
 
 import { fetchPosts, changePostsSortBy } from "./actions/";

@@ -15,7 +15,7 @@ const PostTableRow = ({
 }) =>
   <tr key={`${title}-${category}-${voteScore}`}>
     <td>
-      <Link to={`${category}/${id}`}>
+      <Link to={`/posts/${id}`}>
         {title}
       </Link>
     </td>
