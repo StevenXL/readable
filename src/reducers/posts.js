@@ -1,6 +1,7 @@
 import Ramda from "ramda";
 import {
-  POST_FORM_SUBMITTED_SUCCESS,
+  POST_FORM_POST_SUCCESS,
+  POST_FORM_PUT_SUCCESS,
   POSTS_FETCH_SUCCESS,
   POSTS_CHANGE_SORT_BY
 } from "../actions/types";
@@ -12,7 +13,8 @@ const initialState = { data: {}, sortBy: "voteScore", sortOrder: DESCEND };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case POST_FORM_SUBMITTED_SUCCESS:
+    case POST_FORM_POST_SUCCESS:
+    case POST_FORM_PUT_SUCCESS:
     case POSTS_FETCH_SUCCESS:
       return { ...state, data: { ...state.data, ...action.payload } };
     case POSTS_CHANGE_SORT_BY:
@@ -52,6 +54,8 @@ export const getPostsCurrent = ({ data, sortBy, sortOrder }, category) => {
     ? Ramda.filter(post => post.category === category, sorted)
     : sorted;
 };
+
+export const getPost = ({ data }, id) => data[id];
 
 export const getPostsSortOrder = ({ sortOrder }) => sortOrder;
 

@@ -1,8 +1,15 @@
 import React from "react";
+import Ramda from "ramda";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getPostForm, getCategories } from "./reducers";
-import { postFormChange, submitPostForm } from "./actions";
+import {
+  postFormChange,
+  postPostForm,
+  putPostForm,
+  setInitialValues,
+  resetForm
+} from "./actions";
 
 import { Button, FormGroup, ControlLabel, FormControl } from "react-bootstrap";
 
@@ -12,9 +19,13 @@ class PostForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    const { postForm } = this.props;
+    const { postForm, postPostForm, putPostForm } = this.props;
 
-    this.props.submitPostForm(postForm);
+    if (postForm.id) {
+      putPostForm(postForm);
+    } else {
+      postPostForm(postForm);
+    }
   };
 
   handleChange = field => event =>
@@ -26,6 +37,16 @@ class PostForm extends React.Component {
     return (
       postForm.title && postForm.body && postForm.author && postForm.category
     );
+  };
+
+  componentDidMount = () => {
+    if (this.props.initialValues) {
+      this.props.setInitialValues(this.props.initialValues);
+    }
+  };
+
+  componentWillUnmount = () => {
+    this.props.resetForm();
   };
 
   render() {
@@ -68,6 +89,7 @@ class PostForm extends React.Component {
             placeholder="Author"
             name="author"
             onChange={this.handleChange("author")}
+            disabled={Ramda.contains("author", this.props.disabledFields)}
           />
         </FormGroup>
 
@@ -77,6 +99,7 @@ class PostForm extends React.Component {
             value={postForm.category}
             componentClass="select"
             onChange={this.handleChange("category")}
+            disabled={Ramda.contains("category", this.props.disabledFields)}
           >
             {selectOptions.map(({ name }) =>
               <option key={name} value={name}>
@@ -93,10 +116,16 @@ class PostForm extends React.Component {
 }
 
 // SETTINGS
+PostForm.defaultProps = { initialValues: null, disabledFields: [] };
+
 PostForm.propTypes = {
+  categories: PropTypes.array.isRequired,
+  disabledFields: PropTypes.arrayOf(PropTypes.string),
+  initialValues: PropTypes.shape({ title: PropTypes.string.isRequired }),
   postForm: PropTypes.shape({ title: PropTypes.string.isRequired }).isRequired,
   postFormChange: PropTypes.func.isRequired,
-  categories: PropTypes.array.isRequired
+  setInitialValues: PropTypes.func.isRequired,
+  resetForm: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -104,6 +133,12 @@ const mapStateToProps = state => ({
   categories: getCategories(state)
 });
 
-const mapDispatchToProps = { postFormChange, submitPostForm };
+const mapDispatchToProps = {
+  postFormChange,
+  postPostForm,
+  putPostForm,
+  setInitialValues,
+  resetForm
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostForm);

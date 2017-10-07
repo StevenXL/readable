@@ -4,7 +4,7 @@ import { Grid, Row, Col } from "react-bootstrap";
 
 import DefaultView from "./DefaultView";
 import CategoryView from "./CategoryView";
-import PostView from "./PostView";
+import PostViewContainer from "./PostViewContainer";
 
 class App extends Component {
   render() {
@@ -21,7 +21,8 @@ class App extends Component {
 
           <Route
             path="/posts/:postId"
-            render={({ match }) => <PostView postId={match.params.postId} />}
+            render={({ match }) =>
+              <PostViewContainer postId={match.params.postId} />}
           />
 
           <Route

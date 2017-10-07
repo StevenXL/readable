@@ -20,3 +20,5 @@ export const getPostsSortOrder = state =>
 export const getPostsSortBy = state => fromPosts.getPostsSortBy(state.posts);
 
 export const getPostForm = state => fromPostForm.getPostForm(state.postForm);
+
+export const getPost = (state, id) => fromPosts.getPost(state.posts, id);
