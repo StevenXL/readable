@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { Route } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -9,12 +9,7 @@ import NewPost from "./NewPost";
 
 const CategoryView = ({ category }) => {
   return (
-    <Grid>
-      <Row>
-        <Col xs={12}>
-          <h1>Category</h1>
-        </Col>
-      </Row>
+    <span>
       <Row>
         <Col xs={12}>
           <CategoriesListContainer />
@@ -30,7 +25,7 @@ const CategoryView = ({ category }) => {
           <Route path="/:category?" component={PostsListContainer} />
         </Col>
       </Row>
-    </Grid>
+    </span>
   );
 };
 
