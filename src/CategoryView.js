@@ -12,6 +12,13 @@ const CategoryView = ({ category }) => {
     <span>
       <Row>
         <Col xs={12}>
+          <h3>
+            {category}
+          </h3>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={12}>
           <CategoriesListContainer />
         </Col>
       </Row>

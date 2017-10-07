@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import distanceInWordsToNow from "date-fns/distance_in_words_to_now";
 
 const PostTableRow = ({
+  id,
   title,
   body,
   author,
@@ -13,7 +15,9 @@ const PostTableRow = ({
 }) =>
   <tr key={`${title}-${category}-${voteScore}`}>
     <td>
-      {title}
+      <Link to={`${category}/${id}`}>
+        {title}
+      </Link>
     </td>
     <td>
       {body}
@@ -34,6 +38,7 @@ const PostTableRow = ({
 
 // SETTINGS
 PostTableRow.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
