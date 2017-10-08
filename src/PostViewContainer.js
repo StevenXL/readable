@@ -27,23 +27,27 @@ class PostViewContainer extends React.Component {
 
     return (
       <span>
-        <PostViewPresenter
-          comments={comments}
-          post={post}
-          deletePost={this.delete}
-        />
+        {post &&
+          <PostViewPresenter
+            comments={comments}
+            post={post}
+            deletePost={this.delete}
+          />}
+
         {redirect && <Redirect to="/" />}
       </span>
     );
   }
 }
 
+PostViewContainer.defaultProps = { post: null };
+
 PostViewContainer.propTypes = {
   deletePost: PropTypes.func.isRequired,
   postId: PropTypes.string.isRequired,
   fetchComments: PropTypes.func.isRequired,
   comments: PropTypes.array.isRequired,
-  post: PropTypes.shape({ title: PropTypes.string }).isRequired
+  post: PropTypes.shape({ title: PropTypes.string })
 };
 
 const mapStateToProps = (state, ownProps) => {
