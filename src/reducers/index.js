@@ -31,8 +31,8 @@ export const getPostForm = state => fromPostForm.getPostForm(state.postForm);
 
 export const getPost = (state, id) => fromPosts.getPost(state.posts, id);
 
-export const getCommentsForPost = (state, id) =>
-  fromComments.getCommentsForPost(state.comments, id);
+export const getActiveCommentsForPost = (state, id) =>
+  fromComments.getActiveCommentsForPost(state.comments, id);
 
 export const getCommentForm = state =>
   fromCommentForm.getCommentForm(state.commentForm);

@@ -21,8 +21,13 @@ export default (state = initialState, action) => {
 
 // selectors
 
-export const getCommentsForPost = (comments, postId) => {
+export const getActiveCommentsForPost = (comments, postId) => {
   const commentsArr = Ramda.values(comments);
 
-  return Ramda.filter(comment => comment.parentId === postId, commentsArr);
+  const activeComments = Ramda.filter(
+    comment => comment.deleted === false,
+    commentsArr
+  );
+
+  return Ramda.filter(comment => comment.parentId === postId, activeComments);
 };

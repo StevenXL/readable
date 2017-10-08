@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { sortCommentsByVoteScoreDesc } from "./utilities";
-import { getPost, getCommentsForPost } from "./reducers";
+import { getPost, getActiveCommentsForPost } from "./reducers";
 import { fetchComments, deletePost } from "./actions";
 import PostViewPresenter from "./PostViewPresenter";
 
@@ -54,7 +54,7 @@ const mapStateToProps = (state, ownProps) => {
   const postId = ownProps.postId;
 
   const post = getPost(state, postId);
-  const comments = getCommentsForPost(state, postId);
+  const comments = getActiveCommentsForPost(state, postId);
   const sortedComments = sortCommentsByVoteScoreDesc(comments);
 
   return { postId, comments: sortedComments, post };
