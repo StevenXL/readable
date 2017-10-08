@@ -21,4 +21,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # for concentration
-steps.txt
+steps.md
