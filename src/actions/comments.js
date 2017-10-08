@@ -1,7 +1,12 @@
 import Ramda from "ramda";
-import { COMMENTS_FETCH_SUCCESS } from "./types";
+import { COMMENTS_FETCH_SUCCESS, COMMENT_DELETE_SUCCESS } from "./types";
 
 import { respToJSON, defaultOptions } from "./helpers";
+
+const commentDeletedSuccess = comment => ({
+  type: COMMENT_DELETE_SUCCESS,
+  payload: { [comment.id]: comment }
+});
 
 const fetchCommentSuccess = comments => ({
   type: COMMENTS_FETCH_SUCCESS,
@@ -15,4 +20,13 @@ export const fetchComments = postId => dispatch => {
       const keyed = Ramda.indexBy(Ramda.prop("id"), comments);
       dispatch(fetchCommentSuccess(keyed));
     });
+};
+
+export const deleteComment = commentId => dispatch => {
+  return fetch(`/comments/${commentId}`, {
+    ...defaultOptions,
+    method: "DELETE"
+  })
+    .then(respToJSON)
+    .then(comment => dispatch(commentDeletedSuccess(comment)));
 };

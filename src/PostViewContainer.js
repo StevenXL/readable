@@ -34,7 +34,7 @@ class PostViewContainer extends React.Component {
             deletePost={this.delete}
           />}
 
-        {redirect && <Redirect to="/" />}
+        {(redirect || !post) && <Redirect to="/" />}
       </span>
     );
   }

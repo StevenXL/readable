@@ -12,6 +12,7 @@ const CommentsPresenter = ({ comments }) => {
           <th>Author</th>
           <th>Vote Score</th>
           <th>Time</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
