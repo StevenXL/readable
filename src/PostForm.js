@@ -11,7 +11,14 @@ import {
   resetForm
 } from "./actions";
 
-import { Button, FormGroup, ControlLabel, FormControl } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Button,
+  FormGroup,
+  ControlLabel,
+  FormControl
+} from "react-bootstrap";
 
 import PostMetaData from "./PostMetaData";
 
@@ -117,14 +124,31 @@ class PostForm extends React.Component {
           </FormControl>
         </FormGroup>
 
-        {valid && <Button type="submit">Submit</Button>}
+        <Row>
+          <Col xs={6}>
+            {valid && <Button type="submit">Submit</Button>}
+          </Col>
+          <Col xs={6} className="text-right">
+            {postForm.id &&
+              <Button
+                bsStyle="danger"
+                onClick={() => this.props.deletePost(postForm.id)}
+              >
+                Delete
+              </Button>}
+          </Col>
+        </Row>
       </form>
     );
   }
 }
 
 // SETTINGS
-PostForm.defaultProps = { initialValues: null, disabledFields: [] };
+PostForm.defaultProps = {
+  deletePost: null,
+  initialValues: null,
+  disabledFields: []
+};
 
 PostForm.propTypes = {
   categories: PropTypes.array.isRequired,
@@ -133,7 +157,8 @@ PostForm.propTypes = {
   postForm: PropTypes.shape({ title: PropTypes.string.isRequired }).isRequired,
   postFormChange: PropTypes.func.isRequired,
   setInitialValues: PropTypes.func.isRequired,
-  resetForm: PropTypes.func.isRequired
+  resetForm: PropTypes.func.isRequired,
+  deletePost: PropTypes.func
 };
 
 const mapStateToProps = state => ({

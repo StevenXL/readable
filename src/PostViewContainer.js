@@ -13,7 +13,7 @@ class PostViewContainer extends React.Component {
 
   delete = () => {
     const { deletePost, postId } = this.props;
-    deletePost(postId).then(() => this.setState({ redirect: true }));
+    deletePost(postId);
   };
 
   componentDidMount() {

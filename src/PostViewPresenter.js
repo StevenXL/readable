@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 import PostForm from "./PostForm";
 import CommentsListPresenter from "./CommentsListPresenter";
@@ -12,15 +12,10 @@ const PostViewPresenter = ({ post, comments, deletePost }) => {
       <Row>
         <Col xs={12}>
           <PostForm
+            deletePost={deletePost}
             initialValues={post}
             disabledFields={["author", "category"]}
           />
-        </Col>
-
-        <Col xs={12}>
-          <Button bsStyle="danger" onClick={deletePost}>
-            Delete Post
-          </Button>
         </Col>
       </Row>
 
