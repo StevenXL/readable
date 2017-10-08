@@ -10,3 +10,10 @@ export const createPostForSubmission = postForm => {
 
   return Ramda.merge({ id, timestamp }, postForm);
 };
+
+export const sortCommentsByVoteScoreDesc = comments => {
+  const compare = ({ voteScore: voteScoreOne }, { voteScore: voteScoreTwo }) =>
+    voteScoreTwo - voteScoreOne;
+
+  return Ramda.sort(compare, comments);
+};

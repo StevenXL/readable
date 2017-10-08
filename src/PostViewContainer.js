@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
+import { sortCommentsByVoteScoreDesc } from "./utilities";
 import { getPost, getCommentsForPost } from "./reducers";
 import { fetchComments, deletePost } from "./actions";
 import PostViewPresenter from "./PostViewPresenter";
@@ -50,8 +51,9 @@ const mapStateToProps = (state, ownProps) => {
 
   const post = getPost(state, postId);
   const comments = getCommentsForPost(state, postId);
+  const sortedComments = sortCommentsByVoteScoreDesc(comments);
 
-  return { postId, comments, post };
+  return { postId, comments: sortedComments, post };
 };
 
 const mapDispatchToProps = { fetchComments, deletePost };
