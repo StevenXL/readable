@@ -13,6 +13,8 @@ import {
 
 import { Button, FormGroup, ControlLabel, FormControl } from "react-bootstrap";
 
+import PostMetaData from "./PostMetaData";
+
 const DEFAULT_SELECT = [{ name: "select" }];
 
 class PostForm extends React.Component {
@@ -59,6 +61,12 @@ class PostForm extends React.Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
+        {postForm.id &&
+          <PostMetaData
+            timestamp={postForm.timestamp}
+            voteScore={postForm.voteScore}
+          />}
+
         <FormGroup controlId="title">
           <ControlLabel>Title of Post </ControlLabel>
           <FormControl
