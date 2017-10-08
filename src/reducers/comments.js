@@ -1,11 +1,15 @@
 import Ramda from "ramda";
 
-import { COMMENTS_FETCH_SUCCESS } from "../actions/types";
+import {
+  COMMENT_FORM_POST_SUCCESS,
+  COMMENTS_FETCH_SUCCESS
+} from "../actions/types";
 
 const initialState = {};
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case COMMENT_FORM_POST_SUCCESS:
     case COMMENTS_FETCH_SUCCESS:
       return { ...state, ...action.payload };
     default:

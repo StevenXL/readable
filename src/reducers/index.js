@@ -3,8 +3,15 @@ import categories, * as fromCategories from "./categories";
 import posts, * as fromPosts from "./posts";
 import postForm, * as fromPostForm from "./postForm";
 import comments, * as fromComments from "./comments";
+import commentForm, * as fromCommentForm from "./commentForm";
 
-export default combineReducers({ categories, posts, postForm, comments });
+export default combineReducers({
+  categories,
+  posts,
+  postForm,
+  comments,
+  commentForm
+});
 
 // selectors
 export const getCategories = state =>
@@ -26,3 +33,6 @@ export const getPost = (state, id) => fromPosts.getPost(state.posts, id);
 
 export const getCommentsForPost = (state, id) =>
   fromComments.getCommentsForPost(state.comments, id);
+
+export const getCommentForm = state =>
+  fromCommentForm.getCommentForm(state.commentForm);

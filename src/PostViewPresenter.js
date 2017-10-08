@@ -4,6 +4,7 @@ import { Button, Row, Col } from "react-bootstrap";
 
 import PostForm from "./PostForm";
 import CommentsListPresenter from "./CommentsListPresenter";
+import CommentForm from "./CommentForm";
 
 const PostViewPresenter = ({ post, comments, deletePost }) => {
   return (
@@ -26,6 +27,12 @@ const PostViewPresenter = ({ post, comments, deletePost }) => {
       <Row>
         <Col xs={12}>
           <CommentsListPresenter comments={comments} />
+        </Col>
+      </Row>
+
+      <Row>
+        <Col xs={12}>
+          <CommentForm postId={post.id} />
         </Col>
       </Row>
     </span>

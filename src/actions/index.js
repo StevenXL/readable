@@ -1,5 +1,12 @@
 import { fetchCategories } from "./categories";
 import { fetchPosts, changePostsSortBy, deletePost } from "./posts";
+import { fetchComments } from "./comments";
+import {
+  commentFormMounted,
+  postCommentForm,
+  putCommentForm,
+  commentFormChanged
+} from "./commentForm";
 import {
   postFormChange,
   postPostForm,
@@ -8,17 +15,19 @@ import {
   resetForm
 } from "./postForm";
 
-import { fetchComments } from "./comments";
-
 export {
-  fetchCategories,
-  fetchPosts,
-  fetchComments,
   changePostsSortBy,
+  commentFormChanged,
+  commentFormMounted,
+  deletePost,
+  fetchCategories,
+  fetchComments,
+  fetchPosts,
+  postCommentForm,
   postFormChange,
   postPostForm,
+  putCommentForm,
   putPostForm,
-  setInitialValues,
   resetForm,
-  deletePost
+  setInitialValues
 };

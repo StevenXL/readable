@@ -17,3 +17,13 @@ export const sortCommentsByVoteScoreDesc = comments => {
 
   return Ramda.sort(compare, comments);
 };
+
+export const isPresent = value =>
+  value !== "" && value !== null && value !== undefined;
+
+export const createCommentForSubmission = commentForm => {
+  const id = commentForm.id || uuidv4();
+  const timestamp = Date.now();
+
+  return Ramda.merge({ id, timestamp }, commentForm);
+};
