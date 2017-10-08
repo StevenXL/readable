@@ -2,7 +2,6 @@ import { fetchCategories } from "./categories";
 import { fetchPosts, changePostsSortBy, deletePost } from "./posts";
 import { fetchComments, deleteComment } from "./comments";
 import {
-  commentFormMounted,
   postCommentForm,
   putCommentForm,
   commentFormChanged
@@ -18,7 +17,6 @@ import {
 export {
   changePostsSortBy,
   commentFormChanged,
-  commentFormMounted,
   deletePost,
   fetchCategories,
   fetchComments,

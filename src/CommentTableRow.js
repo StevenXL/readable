@@ -28,6 +28,11 @@ const CommentTableRow = ({
         {distanceInWordsToNow(timestamp)} ago
       </td>
       <td>
+        <Button bsStyle="info" onClick={() => 1}>
+          Edit
+        </Button>
+      </td>
+      <td>
         <Button bsStyle="danger" onClick={() => deleteComment(id)}>
           Delete
         </Button>

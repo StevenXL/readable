@@ -1,35 +1,27 @@
 import React from "react";
+import Ramda from "ramda";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Button, FormGroup, ControlLabel, FormControl } from "react-bootstrap";
 
 import { isPresent } from "./utilities";
 import { getCommentForm } from "./reducers";
-import {
-  postCommentForm,
-  putCommentForm,
-  commentFormMounted,
-  commentFormChanged
-} from "./actions";
+import { postCommentForm, putCommentForm, commentFormChanged } from "./actions";
 
 class CommentForm extends React.Component {
-  componentDidMount() {
-    const { postId, commentFormMounted } = this.props;
-    commentFormMounted(postId);
-  }
-
   handleChange = field => event =>
     this.props.commentFormChanged({ [field]: event.target.value });
 
   handleSubmit = event => {
     event.preventDefault();
 
-    const { commentForm, postCommentForm, putCommentForm } = this.props;
+    const { commentForm, postCommentForm, putCommentForm, postId } = this.props;
+    const withParentId = Ramda.merge({ parentId: postId }, commentForm);
 
     if (commentForm.id) {
-      putCommentForm(commentForm);
+      putCommentForm(withParentId);
     } else {
-      postCommentForm(commentForm);
+      postCommentForm(withParentId);
     }
   };
 
@@ -75,7 +67,6 @@ class CommentForm extends React.Component {
 
 CommentForm.propTypes = {
   postId: PropTypes.string.isRequired,
-  commentFormMounted: PropTypes.func.isRequired,
   commentFormChanged: PropTypes.func.isRequired,
   commentForm: PropTypes.shape({
     body: PropTypes.string,
@@ -94,7 +85,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   postCommentForm,
   putCommentForm,
-  commentFormMounted,
   commentFormChanged
 };
 

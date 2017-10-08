@@ -10,6 +10,12 @@ const PostViewPresenter = ({ post, comments, deletePost }) => {
   return (
     <span>
       <Row>
+        <Col xs={12} className="text-center">
+          <h3>Viewing Post</h3>
+        </Col>
+      </Row>
+
+      <Row>
         <Col xs={12}>
           <PostForm
             deletePost={deletePost}
@@ -20,8 +26,20 @@ const PostViewPresenter = ({ post, comments, deletePost }) => {
       </Row>
 
       <Row>
+        <Col xs={12} className="text-center">
+          <h3>Comments for Post</h3>
+        </Col>
+      </Row>
+
+      <Row>
         <Col xs={12}>
           <CommentsListPresenter comments={comments} />
+        </Col>
+      </Row>
+
+      <Row>
+        <Col xs={12} className="text-center">
+          <h3>Create a New Comment</h3>
         </Col>
       </Row>
 
