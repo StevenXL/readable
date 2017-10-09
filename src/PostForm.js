@@ -61,7 +61,7 @@ class PostForm extends React.Component {
   render() {
     const valid = this.validateForm();
 
-    const { postForm, categories } = this.props;
+    const { postForm, categories, upVotePost, downVotePost } = this.props;
     const selectOptions = postForm.category
       ? categories
       : DEFAULT_SELECT.concat(categories);
@@ -125,10 +125,28 @@ class PostForm extends React.Component {
         </FormGroup>
 
         <Row>
-          <Col xs={6}>
+          <Col xs={3} className="text-center">
             {valid && <Button type="submit">Submit</Button>}
           </Col>
-          <Col xs={6} className="text-right">
+
+          <Col xs={3} className="text-center">
+            {postForm.id &&
+              <Button bsStyle="success" onClick={() => upVotePost(postForm.id)}>
+                Up Vote
+              </Button>}
+          </Col>
+
+          <Col xs={3} className="text-center">
+            {postForm.id &&
+              <Button
+                bsStyle="warning"
+                onClick={() => downVotePost(postForm.id)}
+              >
+                Down Vote
+              </Button>}
+          </Col>
+
+          <Col xs={3} className="text-center">
             {postForm.id &&
               <Button
                 bsStyle="danger"
@@ -158,7 +176,9 @@ PostForm.propTypes = {
   postFormChange: PropTypes.func.isRequired,
   setInitialValues: PropTypes.func.isRequired,
   resetForm: PropTypes.func.isRequired,
-  deletePost: PropTypes.func
+  deletePost: PropTypes.func,
+  upVotePost: PropTypes.func,
+  downVotePost: PropTypes.func
 };
 
 const mapStateToProps = state => ({

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 import { sortCommentsByVoteScoreDesc } from "./utilities";
 import { getPost, getActiveCommentsForPost } from "./reducers";
-import { fetchComments, deletePost } from "./actions";
+import { fetchComments, deletePost, upVotePost, downVotePost } from "./actions";
 import PostViewPresenter from "./PostViewPresenter";
 
 class PostViewContainer extends React.Component {
@@ -32,6 +32,8 @@ class PostViewContainer extends React.Component {
             comments={comments}
             post={post}
             deletePost={this.delete}
+            upVotePost={this.props.upVotePost}
+            downVotePost={this.props.downVotePost}
           />}
 
         {(redirect || !post) && <Redirect to="/" />}
@@ -47,7 +49,9 @@ PostViewContainer.propTypes = {
   postId: PropTypes.string.isRequired,
   fetchComments: PropTypes.func.isRequired,
   comments: PropTypes.array.isRequired,
-  post: PropTypes.shape({ title: PropTypes.string })
+  post: PropTypes.shape({ title: PropTypes.string }),
+  upVotePost: PropTypes.func.isRequired,
+  downVotePost: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -60,6 +64,11 @@ const mapStateToProps = (state, ownProps) => {
   return { postId, comments: sortedComments, post };
 };
 
-const mapDispatchToProps = { fetchComments, deletePost };
+const mapDispatchToProps = {
+  fetchComments,
+  deletePost,
+  downVotePost,
+  upVotePost
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostViewContainer);

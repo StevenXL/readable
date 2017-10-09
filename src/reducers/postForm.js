@@ -2,7 +2,8 @@ import {
   POST_FORM_CHANGE,
   POST_FORM_POST_SUCCESS,
   POST_FORM_SET_INITIAL_VALUES,
-  RESET_FORM
+  RESET_FORM,
+  POST_VOTE_SUCCEEDED
 } from "../actions/types";
 
 const initialState = {
@@ -14,6 +15,10 @@ const initialState = {
 
 const postForm = (state = initialState, action) => {
   switch (action.type) {
+    case POST_VOTE_SUCCEEDED:
+      const data = action.payload[state.id];
+
+      return data ? data : initialState;
     case POST_FORM_SET_INITIAL_VALUES:
       return action.payload;
     case POST_FORM_CHANGE:

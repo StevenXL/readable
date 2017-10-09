@@ -6,7 +6,13 @@ import PostForm from "./PostForm";
 import CommentsListPresenter from "./CommentsListPresenter";
 import CommentForm from "./CommentForm";
 
-const PostViewPresenter = ({ post, comments, deletePost }) => {
+const PostViewPresenter = ({
+  post,
+  comments,
+  deletePost,
+  upVotePost,
+  downVotePost
+}) => {
   return (
     <span>
       <Row>
@@ -19,6 +25,8 @@ const PostViewPresenter = ({ post, comments, deletePost }) => {
         <Col xs={12}>
           <PostForm
             deletePost={deletePost}
+            upVotePost={upVotePost}
+            downVotePost={downVotePost}
             initialValues={post}
             disabledFields={["author", "category"]}
           />
@@ -55,7 +63,9 @@ const PostViewPresenter = ({ post, comments, deletePost }) => {
 PostViewPresenter.propTypes = {
   post: PropTypes.shape({ title: PropTypes.string.isRequired }).isRequired,
   comments: PropTypes.array.isRequired,
-  deletePost: PropTypes.func.isRequired
+  deletePost: PropTypes.func.isRequired,
+  upVotePost: PropTypes.func.isRequired,
+  downVotePost: PropTypes.func.isRequired
 };
 
 export default PostViewPresenter;
