@@ -16,7 +16,7 @@ const PostViewPresenter = ({
   return (
     <span>
       <Row>
-        <Col xs={12} className="text-center">
+        <Col xs={12}>
           <h3>Viewing Post</h3>
         </Col>
       </Row>
@@ -34,7 +34,7 @@ const PostViewPresenter = ({
       </Row>
 
       <Row>
-        <Col xs={12} className="text-center">
+        <Col xs={12}>
           <h3>Comments for Post</h3>
         </Col>
       </Row>
@@ -46,7 +46,7 @@ const PostViewPresenter = ({
       </Row>
 
       <Row>
-        <Col xs={12} className="text-center">
+        <Col xs={12}>
           <h3>Create a New Comment</h3>
         </Col>
       </Row>
