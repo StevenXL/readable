@@ -2,17 +2,22 @@ import React from "react";
 import Ramda from "ramda";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import { getComment } from "./reducers";
 
 import CommentEditorPresenter from "./CommentEditorPresenter";
 
 const CommentEditorContainer = ({ comment }) => {
-  return <CommentEditorPresenter comment={comment} />;
+  return comment
+    ? <CommentEditorPresenter comment={comment} />
+    : <Redirect to="/" />;
 };
 
+CommentEditorContainer.defaultProps = { comment: null };
+
 CommentEditorContainer.propTypes = {
-  comment: PropTypes.shape({ id: PropTypes.string }).isRequired
+  comment: PropTypes.shape({ id: PropTypes.string })
 };
 
 const mapStateToProps = (state, ownProps) => {

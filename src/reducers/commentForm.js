@@ -14,7 +14,6 @@ export default (state = initialState, action) => {
       const data = action.payload[state.id];
       return data ? data : state;
     case COMMENT_FORM_PUT_SUCCESS:
-    case COMMENT_FORM_PUT_SUCCESS:
     case COMMENT_FORM_SET_INITIAL_VALUES:
     case COMMENT_FORM_CHANGED:
       return { ...state, ...action.payload };

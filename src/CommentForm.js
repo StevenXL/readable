@@ -2,7 +2,14 @@ import React from "react";
 import Ramda from "ramda";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Button, FormGroup, ControlLabel, FormControl } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Button,
+  FormGroup,
+  ControlLabel,
+  FormControl
+} from "react-bootstrap";
 
 import { isPresent } from "./utilities";
 import { getCommentForm } from "./reducers";
@@ -10,7 +17,10 @@ import {
   postCommentForm,
   putCommentForm,
   commentFormChanged,
-  setCommentFormInitialValues
+  setCommentFormInitialValues,
+  upVoteComment,
+  deleteComment,
+  downVoteComment
 } from "./actions";
 
 class CommentForm extends React.Component {
@@ -55,10 +65,21 @@ class CommentForm extends React.Component {
 
   render() {
     const valid = this.validate();
-    const { commentForm, disabledFields } = this.props;
+    const {
+      commentForm,
+      disabledFields,
+      deleteComment,
+      downVoteComment,
+      upVoteComment
+    } = this.props;
 
     return (
       <form onSubmit={this.handleSubmit}>
+        {commentForm.voteScore &&
+          <h4>
+            Vote Score: <small>{commentForm.voteScore}</small>
+          </h4>}
+
         <FormGroup controlId="body">
           <ControlLabel>Body of Comment</ControlLabel>
           <FormControl
@@ -82,7 +103,41 @@ class CommentForm extends React.Component {
           />
         </FormGroup>
 
-        {valid && <Button type="submit">Submit</Button>}
+        <Row>
+          <Col xs={3} className="text-center">
+            {valid && <Button type="submit">Submit</Button>}
+          </Col>
+
+          <Col xs={3} className="text-center">
+            {commentForm.id &&
+              <Button
+                bsStyle="success"
+                onClick={() => upVoteComment(commentForm.id)}
+              >
+                Up Vote
+              </Button>}
+          </Col>
+
+          <Col xs={3} className="text-center">
+            {commentForm.id &&
+              <Button
+                bsStyle="warning"
+                onClick={() => downVoteComment(commentForm.id)}
+              >
+                Down Vote
+              </Button>}
+          </Col>
+
+          <Col xs={3} className="text-center">
+            {commentForm.id &&
+              <Button
+                bsStyle="danger"
+                onClick={() => deleteComment(commentForm.id)}
+              >
+                Delete
+              </Button>}
+          </Col>
+        </Row>
       </form>
     );
   }
@@ -118,7 +173,10 @@ const mapDispatchToProps = {
   postCommentForm,
   putCommentForm,
   commentFormChanged,
-  setInitialValues: setCommentFormInitialValues
+  setInitialValues: setCommentFormInitialValues,
+  upVoteComment,
+  downVoteComment,
+  deleteComment
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentForm);
