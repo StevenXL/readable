@@ -18,7 +18,7 @@ const postForm = (state = initialState, action) => {
     case POST_VOTE_SUCCEEDED:
       const data = action.payload[state.id];
 
-      return data ? data : initialState;
+      return data ? data : state;
     case POST_FORM_SET_INITIAL_VALUES:
       return action.payload;
     case POST_FORM_CHANGE:

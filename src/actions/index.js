@@ -6,7 +6,12 @@ import {
   upVotePost,
   downVotePost
 } from "./posts";
-import { fetchComments, deleteComment } from "./comments";
+import {
+  fetchComments,
+  deleteComment,
+  upVoteComment,
+  downVoteComment
+} from "./comments";
 import {
   postCommentForm,
   putCommentForm,
@@ -38,5 +43,7 @@ export {
   deleteComment,
   setCommentFormInitialValues,
   upVotePost,
-  downVotePost
+  downVotePost,
+  upVoteComment,
+  downVoteComment
 };

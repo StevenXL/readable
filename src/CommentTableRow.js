@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Button } from "react-bootstrap";
-import { deleteComment } from "./actions";
+import { deleteComment, upVoteComment, downVoteComment } from "./actions";
 import { Link } from "react-router-dom";
 
 import distanceInWordsToNow from "date-fns/distance_in_words_to_now";
@@ -12,7 +12,9 @@ const CommentTableRow = ({
   author,
   voteScore,
   timestamp,
-  deleteComment
+  deleteComment,
+  upVoteComment,
+  downVoteComment
 }) => {
   return (
     <tr key={id}>
@@ -38,8 +40,20 @@ const CommentTableRow = ({
           Delete
         </Button>
       </td>
+      <td>
+        <Button bsStyle="success" onClick={() => upVoteComment(id)}>
+          Up Vote
+        </Button>
+      </td>
+      <td>
+        <Button bsStyle="warning" onClick={() => downVoteComment(id)}>
+          Down Vote
+        </Button>
+      </td>
     </tr>
   );
 };
 
-export default connect(null, { deleteComment })(CommentTableRow);
+export default connect(null, { deleteComment, upVoteComment, downVoteComment })(
+  CommentTableRow
+);
