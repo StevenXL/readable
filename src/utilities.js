@@ -21,9 +21,14 @@ export const sortCommentsByVoteScoreDesc = comments => {
 export const isPresent = value =>
   value !== "" && value !== null && value !== undefined;
 
-export const createCommentForSubmission = commentForm => {
+export const createCommentForPostSubmission = commentForm => {
   const id = commentForm.id || uuidv4();
   const timestamp = Date.now();
 
   return Ramda.merge({ id, timestamp }, commentForm);
+};
+
+export const createCommentForPutSubmission = ({ body }) => {
+  const timestamp = Date.now();
+  return { body, timestamp };
 };

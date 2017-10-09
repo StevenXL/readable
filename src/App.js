@@ -5,6 +5,7 @@ import { Grid, Row, Col } from "react-bootstrap";
 import DefaultView from "./DefaultView";
 import CategoryView from "./CategoryView";
 import PostViewContainer from "./PostViewContainer";
+import CommentEditorContainer from "./CommentEditorContainer";
 
 class App extends Component {
   render() {
@@ -17,6 +18,8 @@ class App extends Component {
         </Row>
 
         <Switch>
+          <Route path="/comment/edit" component={CommentEditorContainer} />
+
           <Route exact path="/" component={DefaultView} />
 
           <Route
@@ -30,6 +33,7 @@ class App extends Component {
             render={({ match }) =>
               <CategoryView category={match.params.category} />}
           />
+
           <Redirect to="/" />
         </Switch>
       </Grid>

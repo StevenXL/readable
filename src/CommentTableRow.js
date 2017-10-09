@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Button } from "react-bootstrap";
 import { deleteComment } from "./actions";
+import { Link } from "react-router-dom";
 
 import distanceInWordsToNow from "date-fns/distance_in_words_to_now";
 
@@ -28,9 +29,9 @@ const CommentTableRow = ({
         {distanceInWordsToNow(timestamp)} ago
       </td>
       <td>
-        <Button bsStyle="info" onClick={() => 1}>
+        <Link to={{ pathname: "/comment/edit", state: { commentId: id } }}>
           Edit
-        </Button>
+        </Link>
       </td>
       <td>
         <Button bsStyle="danger" onClick={() => deleteComment(id)}>

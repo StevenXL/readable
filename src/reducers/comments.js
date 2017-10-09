@@ -31,3 +31,5 @@ export const getActiveCommentsForPost = (comments, postId) => {
 
   return Ramda.filter(comment => comment.parentId === postId, activeComments);
 };
+
+export const getComment = (state, commentId) => state[commentId];

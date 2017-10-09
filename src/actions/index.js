@@ -4,7 +4,8 @@ import { fetchComments, deleteComment } from "./comments";
 import {
   postCommentForm,
   putCommentForm,
-  commentFormChanged
+  commentFormChanged,
+  setInitialValues as setCommentFormInitialValues
 } from "./commentForm";
 import {
   postFormChange,
@@ -28,5 +29,6 @@ export {
   putPostForm,
   resetForm,
   setInitialValues,
-  deleteComment
+  deleteComment,
+  setCommentFormInitialValues
 };

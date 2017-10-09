@@ -6,17 +6,39 @@ import { Button, FormGroup, ControlLabel, FormControl } from "react-bootstrap";
 
 import { isPresent } from "./utilities";
 import { getCommentForm } from "./reducers";
-import { postCommentForm, putCommentForm, commentFormChanged } from "./actions";
+import {
+  postCommentForm,
+  putCommentForm,
+  commentFormChanged,
+  setCommentFormInitialValues
+} from "./actions";
 
 class CommentForm extends React.Component {
+  get postId() {
+    const fromInitialValues = Ramda.path(
+      ["initialValues", "parentId"],
+      this.props
+    );
+
+    return fromInitialValues || this.props.postId;
+  }
+
+  componentDidMount() {
+    const { initialValues, setInitialValues } = this.props;
+
+    if (initialValues) {
+      setInitialValues(initialValues);
+    }
+  }
+
   handleChange = field => event =>
     this.props.commentFormChanged({ [field]: event.target.value });
 
   handleSubmit = event => {
     event.preventDefault();
 
-    const { commentForm, postCommentForm, putCommentForm, postId } = this.props;
-    const withParentId = Ramda.merge({ parentId: postId }, commentForm);
+    const { commentForm, postCommentForm, putCommentForm } = this.props;
+    const withParentId = Ramda.merge({ parentId: this.postId }, commentForm);
 
     if (commentForm.id) {
       putCommentForm(withParentId);
@@ -33,7 +55,7 @@ class CommentForm extends React.Component {
 
   render() {
     const valid = this.validate();
-    const { commentForm } = this.props;
+    const { commentForm, disabledFields } = this.props;
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -56,6 +78,7 @@ class CommentForm extends React.Component {
             placeholder="Author"
             name="author"
             onChange={this.handleChange("author")}
+            disabled={Ramda.contains("author", disabledFields)}
           />
         </FormGroup>
 
@@ -65,15 +88,24 @@ class CommentForm extends React.Component {
   }
 }
 
+CommentForm.defaultProps = {
+  postId: null,
+  initialValues: null,
+  disabledFields: []
+};
+
 CommentForm.propTypes = {
-  postId: PropTypes.string.isRequired,
+  initialValues: PropTypes.shape({ id: PropTypes.string.isRequired }),
+  postId: PropTypes.string,
   commentFormChanged: PropTypes.func.isRequired,
   commentForm: PropTypes.shape({
     body: PropTypes.string,
     author: PropTypes.string
   }).isRequired,
   putCommentForm: PropTypes.func.isRequired,
-  postCommentForm: PropTypes.func.isRequired
+  postCommentForm: PropTypes.func.isRequired,
+  setInitialValues: PropTypes.func.isRequired,
+  disabledFields: PropTypes.arrayOf(PropTypes.string)
 };
 
 const mapStateToProps = state => {
@@ -85,7 +117,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   postCommentForm,
   putCommentForm,
-  commentFormChanged
+  commentFormChanged,
+  setInitialValues: setCommentFormInitialValues
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentForm);
