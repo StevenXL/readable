@@ -6,6 +6,7 @@ import DefaultView from "./DefaultView";
 import CategoryView from "./CategoryView";
 import PostViewContainer from "./PostViewContainer";
 import CommentEditorContainer from "./CommentEditorContainer";
+import Navigation from "./Navigation";
 
 class App extends Component {
   render() {
@@ -13,7 +14,7 @@ class App extends Component {
       <Grid>
         <Row>
           <Col xs={12}>
-            <h1>Readable</h1>
+            <Navigation />
           </Col>
         </Row>
 

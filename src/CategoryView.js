@@ -2,7 +2,6 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 
-import CategoriesListContainer from "./CategoriesListContainer";
 import PostsListContainer from "./PostsListContainer";
 import PostForm from "./PostForm";
 
@@ -14,11 +13,6 @@ const CategoryView = ({ category }) => {
           <h3>
             {category}
           </h3>
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={12}>
-          <CategoriesListContainer />
         </Col>
       </Row>
       <Row>
