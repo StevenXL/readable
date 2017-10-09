@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import distanceInWordsToNow from "date-fns/distance_in_words_to_now";
+import { Button } from "react-bootstrap";
 
 const PostTableRow = ({
   id,
@@ -11,7 +12,8 @@ const PostTableRow = ({
   author,
   category,
   voteScore,
-  timestamp
+  timestamp,
+  upVote
 }) =>
   <tr key={`${title}-${category}-${voteScore}`}>
     <td>
@@ -34,6 +36,12 @@ const PostTableRow = ({
     <td>
       {distanceInWordsToNow(timestamp)} ago
     </td>
+    <td>
+      <Button onClick={() => upVote(id)}>UpVote</Button>
+    </td>
+    <td>
+      {distanceInWordsToNow(timestamp)} ago
+    </td>
   </tr>;
 
 // SETTINGS
@@ -44,7 +52,8 @@ PostTableRow.propTypes = {
   author: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   voteScore: PropTypes.number.isRequired,
-  timestamp: PropTypes.number.isRequired
+  timestamp: PropTypes.number.isRequired,
+  upVote: PropTypes.func.isRequired
 };
 
 export default PostTableRow;

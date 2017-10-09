@@ -9,7 +9,8 @@ const PostsListPresenter = ({
   posts,
   changePostsSortBy,
   sortBy,
-  sortOrder
+  sortOrder,
+  upVote
 }) => {
   const triangle = (
     <Glyphicon
@@ -33,10 +34,14 @@ const PostsListPresenter = ({
           <th onClick={() => changePostsSortBy("timestamp")}>
             Time Posted {sortBy === "timestamp" ? triangle : option}
           </th>
+          <th>Upvote</th>
+          <th>Downvote</th>
         </tr>
       </thead>
       <tbody>
-        {posts.map(post => <PostTableRow key={post.id} {...post} />)}
+        {posts.map(post =>
+          <PostTableRow key={post.id} upVote={upVote} {...post} />
+        )}
       </tbody>
     </Table>
   );
@@ -49,7 +54,8 @@ PostsListPresenter.propTypes = {
   categories: PropTypes.array,
   changePostsSortBy: PropTypes.func.isRequired,
   sortBy: PropTypes.string.isRequired,
-  sortOrder: PropTypes.string.isRequired
+  sortOrder: PropTypes.string.isRequired,
+  upVote: PropTypes.func.isRequired
 };
 
 export default PostsListPresenter;

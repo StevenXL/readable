@@ -1,5 +1,5 @@
 import { fetchCategories } from "./categories";
-import { fetchPosts, changePostsSortBy, deletePost } from "./posts";
+import { fetchPosts, changePostsSortBy, deletePost, upVotePost } from "./posts";
 import { fetchComments, deleteComment } from "./comments";
 import {
   postCommentForm,
@@ -30,5 +30,6 @@ export {
   resetForm,
   setInitialValues,
   deleteComment,
-  setCommentFormInitialValues
+  setCommentFormInitialValues,
+  upVotePost
 };

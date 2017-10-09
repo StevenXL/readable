@@ -1,6 +1,10 @@
 import { connect } from "react-redux";
 
-import { fetchPosts, changePostsSortBy } from "./actions/";
+import {
+  fetchPosts,
+  changePostsSortBy,
+  upVotePost as upVote
+} from "./actions/";
 import {
   getPostsCurrent,
   getPostsSortOrder,
@@ -21,7 +25,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = { fetchData: fetchPosts, changePostsSortBy };
+const mapDispatchToProps = { fetchData: fetchPosts, changePostsSortBy, upVote };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   fetchPostListContainer
