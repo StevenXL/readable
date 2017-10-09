@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-import { getComment } from "./reducers";
+import { getActiveComment } from "./reducers";
 
 import CommentEditorPresenter from "./CommentEditorPresenter";
 
@@ -22,7 +22,7 @@ CommentEditorContainer.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   const commentId = Ramda.path(["location", "state", "commentId"], ownProps);
-  const comment = getComment(state, commentId);
+  const comment = getActiveComment(state, commentId);
 
   return { comment };
 };

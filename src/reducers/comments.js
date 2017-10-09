@@ -14,8 +14,8 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case COMMENT_VOTE_SUCCESS:
     case COMMENT_FORM_PUT_SUCCESS:
-    case COMMENT_DELETE_SUCCESS:
     case COMMENT_FORM_POST_SUCCESS:
+    case COMMENT_DELETE_SUCCESS:
     case COMMENTS_FETCH_SUCCESS:
       return { ...state, ...action.payload };
     default:
@@ -25,15 +25,20 @@ export default (state = initialState, action) => {
 
 // selectors
 
-export const getActiveCommentsForPost = (comments, postId) => {
-  const commentsArr = Ramda.values(comments);
+const getActiveComments = state => {
+  const commentsArr = Ramda.values(state);
 
-  const activeComments = Ramda.filter(
-    comment => comment.deleted === false,
-    commentsArr
-  );
+  return Ramda.filter(comment => comment.deleted === false, commentsArr);
+};
+
+export const getActiveCommentsForPost = (comments, postId) => {
+  const activeComments = getActiveComments(comments);
 
   return Ramda.filter(comment => comment.parentId === postId, activeComments);
 };
 
-export const getComment = (state, commentId) => state[commentId];
+export const getActiveComment = (state, commentId) => {
+  const activeComments = getActiveComments(state);
+
+  return Ramda.find(comment => comment.id === commentId, activeComments);
+};
