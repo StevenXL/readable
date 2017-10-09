@@ -23,15 +23,16 @@ class App extends Component {
           <Route exact path="/" component={DefaultView} />
 
           <Route
-            path="/posts/:postId"
-            render={({ match }) =>
-              <PostViewContainer postId={match.params.postId} />}
-          />
-
-          <Route
+            exact
             path="/:category"
             render={({ match }) =>
               <CategoryView category={match.params.category} />}
+          />
+
+          <Route
+            path="/:category/:postId"
+            render={({ match }) =>
+              <PostViewContainer postId={match.params.postId} />}
           />
 
           <Redirect to="/" />
