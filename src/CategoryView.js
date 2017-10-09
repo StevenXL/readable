@@ -11,15 +11,31 @@ const CategoryView = ({ category }) => {
       <Row>
         <Col xs={12}>
           <h3>
-            {category}
+            Viwing category: {category}
           </h3>
         </Col>
       </Row>
+
+      <Row>
+        <Col xs={12}>
+          <h3>Create a New Post</h3>
+        </Col>
+      </Row>
+
       <Row>
         <Col xs={12}>
           <PostForm />
         </Col>
       </Row>
+
+      <Row>
+        <Col xs={12}>
+          <h3>
+            Listing Posts for {category}
+          </h3>
+        </Col>
+      </Row>
+
       <Row>
         <Col xs={12}>
           <PostsListContainer category={category} />
