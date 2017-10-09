@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import {
   fetchPosts,
   changePostsSortBy,
-  upVotePost as upVote
+  upVotePost as upVote,
+  downVotePost as downVote
 } from "./actions/";
 import {
   getPostsCurrent,
@@ -25,7 +26,12 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = { fetchData: fetchPosts, changePostsSortBy, upVote };
+const mapDispatchToProps = {
+  fetchData: fetchPosts,
+  changePostsSortBy,
+  upVote,
+  downVote
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   fetchPostListContainer

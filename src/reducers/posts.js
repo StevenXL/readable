@@ -5,7 +5,7 @@ import {
   POSTS_FETCH_SUCCESS,
   POSTS_CHANGE_SORT_BY,
   POST_DELETE_SUCCESS,
-  POST_UPVOTE_SUCCEEDED
+  POST_VOTE_SUCCEEDED
 } from "../actions/types";
 
 const ASCEND = "ascend";
@@ -15,7 +15,7 @@ const initialState = { data: {}, sortBy: "voteScore", sortOrder: DESCEND };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case POST_UPVOTE_SUCCEEDED:
+    case POST_VOTE_SUCCEEDED:
     case POST_FORM_POST_SUCCESS:
     case POST_FORM_PUT_SUCCESS:
     case POSTS_FETCH_SUCCESS:

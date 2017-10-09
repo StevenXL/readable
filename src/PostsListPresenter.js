@@ -10,7 +10,8 @@ const PostsListPresenter = ({
   changePostsSortBy,
   sortBy,
   sortOrder,
-  upVote
+  upVote,
+  downVote
 }) => {
   const triangle = (
     <Glyphicon
@@ -40,7 +41,12 @@ const PostsListPresenter = ({
       </thead>
       <tbody>
         {posts.map(post =>
-          <PostTableRow key={post.id} upVote={upVote} {...post} />
+          <PostTableRow
+            key={post.id}
+            upVote={upVote}
+            downVote={downVote}
+            {...post}
+          />
         )}
       </tbody>
     </Table>
@@ -55,7 +61,8 @@ PostsListPresenter.propTypes = {
   changePostsSortBy: PropTypes.func.isRequired,
   sortBy: PropTypes.string.isRequired,
   sortOrder: PropTypes.string.isRequired,
-  upVote: PropTypes.func.isRequired
+  upVote: PropTypes.func.isRequired,
+  downVote: PropTypes.func.isRequired
 };
 
 export default PostsListPresenter;

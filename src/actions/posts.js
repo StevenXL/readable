@@ -2,14 +2,14 @@ import {
   POSTS_FETCH_SUCCESS,
   POSTS_CHANGE_SORT_BY,
   POST_DELETE_SUCCESS,
-  POST_UPVOTE_SUCCEEDED
+  POST_VOTE_SUCCEEDED
 } from "./types";
 
 import { respToJSON, defaultOptions } from "./helpers";
 import Ramda from "ramda";
 
-const upVoteSucceeded = keyedPost => ({
-  type: POST_UPVOTE_SUCCEEDED,
+const postVoteSuceeded = keyedPost => ({
+  type: POST_VOTE_SUCCEEDED,
   payload: keyedPost
 });
 
@@ -43,14 +43,18 @@ export const deletePost = postId => dispatch => {
   }).then(() => dispatch(deletePostSuccess(postId)));
 };
 
-export const upVotePost = postId => dispatch => {
-  const body = JSON.stringify({ option: "upVote" });
+const voteOnPost = voteOption => postId => dispatch => {
+  const body = JSON.stringify({ option: voteOption });
 
   return fetch(`/posts/${postId}`, { ...defaultOptions, method: "POST", body })
     .then(respToJSON)
     .then(post => {
       const keyed = Ramda.indexBy(Ramda.prop("id"), [post]);
 
-      return dispatch(upVoteSucceeded(keyed));
+      return dispatch(postVoteSuceeded(keyed));
     });
 };
+
+export const upVotePost = voteOnPost("upVote");
+
+export const downVotePost = voteOnPost("downVote");

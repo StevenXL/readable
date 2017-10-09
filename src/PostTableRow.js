@@ -13,7 +13,8 @@ const PostTableRow = ({
   category,
   voteScore,
   timestamp,
-  upVote
+  upVote,
+  downVote
 }) =>
   <tr key={`${title}-${category}-${voteScore}`}>
     <td>
@@ -37,10 +38,14 @@ const PostTableRow = ({
       {distanceInWordsToNow(timestamp)} ago
     </td>
     <td>
-      <Button onClick={() => upVote(id)}>UpVote</Button>
+      <Button bsStyle="success" onClick={() => upVote(id)}>
+        Up Vote
+      </Button>
     </td>
     <td>
-      {distanceInWordsToNow(timestamp)} ago
+      <Button bsStyle="warning" onClick={() => downVote(id)}>
+        Down Vote
+      </Button>
     </td>
   </tr>;
 
@@ -53,7 +58,8 @@ PostTableRow.propTypes = {
   category: PropTypes.string.isRequired,
   voteScore: PropTypes.number.isRequired,
   timestamp: PropTypes.number.isRequired,
-  upVote: PropTypes.func.isRequired
+  upVote: PropTypes.func.isRequired,
+  downVote: PropTypes.func.isRequired
 };
 
 export default PostTableRow;
