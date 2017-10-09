@@ -48,7 +48,10 @@ export const putCommentForm = commentForm => dispatch => {
     body
   })
     .then(respToJSON)
-    .then(comment => dispatch(putCommentSucceeded(comment)));
+    .then(comment => {
+      const keyed = Ramda.indexBy(Ramda.prop("id"), [comment]);
+      return dispatch(putCommentSucceeded(keyed));
+    });
 };
 
 export const commentFormChanged = changeset => ({

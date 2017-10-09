@@ -1,6 +1,7 @@
 import Ramda from "ramda";
 
 import {
+  COMMENT_FORM_PUT_SUCCESS,
   COMMENT_FORM_POST_SUCCESS,
   COMMENTS_FETCH_SUCCESS,
   COMMENT_DELETE_SUCCESS
@@ -10,6 +11,7 @@ const initialState = {};
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case COMMENT_FORM_PUT_SUCCESS:
     case COMMENT_DELETE_SUCCESS:
     case COMMENT_FORM_POST_SUCCESS:
     case COMMENTS_FETCH_SUCCESS:
