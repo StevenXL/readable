@@ -23,7 +23,7 @@ const voteOnCommentSuccess = keyedComment => ({
 });
 
 export const fetchComments = postId => dispatch => {
-  return fetch(`${postId}/comments`, defaultOptions)
+  return fetch(`/posts/${postId}/comments`, defaultOptions)
     .then(respToJSON)
     .then(comments => {
       const keyed = Ramda.indexBy(Ramda.prop("id"), comments);

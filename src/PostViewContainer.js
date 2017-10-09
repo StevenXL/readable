@@ -24,7 +24,6 @@ class PostViewContainer extends React.Component {
   render() {
     const { comments, post } = this.props;
     const redirect = this.state.redirect;
-
     return (
       <span>
         {post &&
