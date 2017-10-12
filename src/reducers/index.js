@@ -1,3 +1,4 @@
+import Ramda from "ramda";
 import { combineReducers } from "redux";
 import categories, * as fromCategories from "./categories";
 import posts, * as fromPosts from "./posts";
@@ -39,3 +40,14 @@ export const getCommentForm = state =>
 
 export const getActiveComment = (state, commentId) =>
   fromComments.getActiveComment(state.comments, commentId);
+
+export const getCurrentPostsWithComments = ({ state, category }) => {
+  const posts = getPostsCurrent({ state, category });
+
+  const combinePostAndComments = post => {
+    const comments = getActiveCommentsForPost(state, post.id);
+    return Ramda.merge({ comments }, post);
+  };
+
+  return Ramda.map(combinePostAndComments, posts);
+};

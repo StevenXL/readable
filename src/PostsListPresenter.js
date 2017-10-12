@@ -29,15 +29,16 @@ const PostsListPresenter = ({
           <th>Title</th>
           <th>Body</th>
           <th>Author</th>
+          <th>Comment Count</th>
           <th>Category</th>
           <th onClick={() => changePostsSortBy("voteScore")}>
             Vote Score {sortBy === "voteScore" ? triangle : option}
           </th>
           <th onClick={() => changePostsSortBy("timestamp")}>
-            Time Posted {sortBy === "timestamp" ? triangle : option}
+            Posted {sortBy === "timestamp" ? triangle : option}
           </th>
-          <th>Upvote</th>
-          <th>Downvote</th>
+          <th>Up Vote</th>
+          <th>Down Vote</th>
           <th>Delete</th>
           <th>Edit</th>
         </tr>
@@ -58,10 +59,7 @@ const PostsListPresenter = ({
 };
 
 // SETTINGS
-PostsListPresenter.defaultProps = { categories: [] };
-
 PostsListPresenter.propTypes = {
-  categories: PropTypes.array,
   changePostsSortBy: PropTypes.func.isRequired,
   sortBy: PropTypes.string.isRequired,
   sortOrder: PropTypes.string.isRequired,

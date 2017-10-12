@@ -1,14 +1,14 @@
 import { connect } from "react-redux";
 
 import {
-  fetchPosts,
+  getPostsThenComments,
   changePostsSortBy,
   upVotePost as upVote,
   downVotePost as downVote,
   deletePost
 } from "./actions/";
 import {
-  getPostsCurrent,
+  getCurrentPostsWithComments,
   getPostsSortOrder,
   getPostsSortBy
 } from "./reducers/";
@@ -21,14 +21,14 @@ const fetchPostListContainer = withDataFetch(PostsListPresenter, "posts");
 const mapStateToProps = (state, ownProps) => {
   const category = ownProps.category;
   return {
-    data: getPostsCurrent({ state, category }),
+    data: getCurrentPostsWithComments({ state, category }),
     sortOrder: getPostsSortOrder(state),
     sortBy: getPostsSortBy(state)
   };
 };
 
 const mapDispatchToProps = {
-  fetchData: fetchPosts,
+  fetchData: getPostsThenComments,
   changePostsSortBy,
   upVote,
   downVote,

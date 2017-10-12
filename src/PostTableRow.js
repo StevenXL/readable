@@ -15,48 +15,55 @@ const PostTableRow = ({
   timestamp,
   upVote,
   downVote,
-  deletePost
-}) =>
-  <tr key={`${title}-${category}-${voteScore}`}>
-    <td>
-      <Link to={`/${category}/${id}`}>
-        {title}
-      </Link>
-    </td>
-    <td>
-      {body}
-    </td>
-    <td>
-      {author}
-    </td>
-    <td>
-      {category}
-    </td>
-    <td>
-      {voteScore}
-    </td>
-    <td>
-      {distanceInWordsToNow(timestamp)} ago
-    </td>
-    <td>
-      <Button bsStyle="success" onClick={() => upVote(id)}>
-        Up Vote
-      </Button>
-    </td>
-    <td>
-      <Button bsStyle="warning" onClick={() => downVote(id)}>
-        Down Vote
-      </Button>
-    </td>
-    <td>
-      <Button bsStyle="danger" onClick={() => deletePost(id)}>
-        Delete
-      </Button>
-    </td>
-    <td>
-      <Link to={`/${category}/${id}`}>Edit</Link>
-    </td>
-  </tr>;
+  deletePost,
+  comments
+}) => {
+  return (
+    <tr key={`${title}-${category}-${voteScore}`}>
+      <td>
+        <Link to={`/${category}/${id}`}>
+          {title}
+        </Link>
+      </td>
+      <td>
+        {body}
+      </td>
+      <td>
+        {author}
+      </td>
+      <td>
+        {comments.length}
+      </td>
+      <td>
+        {category}
+      </td>
+      <td>
+        {voteScore}
+      </td>
+      <td>
+        {distanceInWordsToNow(timestamp)} ago
+      </td>
+      <td>
+        <Button bsStyle="success" onClick={() => upVote(id)}>
+          Up Vote
+        </Button>
+      </td>
+      <td>
+        <Button bsStyle="warning" onClick={() => downVote(id)}>
+          Down Vote
+        </Button>
+      </td>
+      <td>
+        <Button bsStyle="danger" onClick={() => deletePost(id)}>
+          Delete
+        </Button>
+      </td>
+      <td>
+        <Link to={`/${category}/${id}`}>Edit</Link>
+      </td>
+    </tr>
+  );
+};
 
 // SETTINGS
 PostTableRow.propTypes = {

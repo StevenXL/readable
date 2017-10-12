@@ -1,3 +1,4 @@
+import { getPosts } from "../reducers";
 import { fetchCategories } from "./categories";
 import {
   fetchPosts,
@@ -26,6 +27,17 @@ import {
   resetForm
 } from "./postForm";
 
+const getPostsThenComments = () => (dispatch, getState) => {
+  const fetchAllComments = () => {
+    const posts = getPosts(getState());
+    const postIds = posts.map(post => post.id);
+
+    return Promise.all(postIds.map(postId => fetchComments(postId)(dispatch)));
+  };
+
+  return fetchPosts()(dispatch).then(fetchAllComments);
+};
+
 export {
   changePostsSortBy,
   commentFormChanged,
@@ -45,5 +57,6 @@ export {
   upVotePost,
   downVotePost,
   upVoteComment,
-  downVoteComment
+  downVoteComment,
+  getPostsThenComments
 };
