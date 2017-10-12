@@ -4,7 +4,8 @@ import {
   fetchPosts,
   changePostsSortBy,
   upVotePost as upVote,
-  downVotePost as downVote
+  downVotePost as downVote,
+  deletePost
 } from "./actions/";
 import {
   getPostsCurrent,
@@ -30,7 +31,8 @@ const mapDispatchToProps = {
   fetchData: fetchPosts,
   changePostsSortBy,
   upVote,
-  downVote
+  downVote,
+  deletePost
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(

@@ -14,7 +14,8 @@ const PostTableRow = ({
   voteScore,
   timestamp,
   upVote,
-  downVote
+  downVote,
+  deletePost
 }) =>
   <tr key={`${title}-${category}-${voteScore}`}>
     <td>
@@ -47,6 +48,11 @@ const PostTableRow = ({
         Down Vote
       </Button>
     </td>
+    <td>
+      <Button bsStyle="danger" onClick={() => deletePost(id)}>
+        Delete
+      </Button>
+    </td>
   </tr>;
 
 // SETTINGS
@@ -59,7 +65,8 @@ PostTableRow.propTypes = {
   voteScore: PropTypes.number.isRequired,
   timestamp: PropTypes.number.isRequired,
   upVote: PropTypes.func.isRequired,
-  downVote: PropTypes.func.isRequired
+  downVote: PropTypes.func.isRequired,
+  deletePost: PropTypes.func.isRequired
 };
 
 export default PostTableRow;

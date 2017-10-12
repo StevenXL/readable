@@ -11,7 +11,8 @@ const PostsListPresenter = ({
   sortBy,
   sortOrder,
   upVote,
-  downVote
+  downVote,
+  deletePost
 }) => {
   const triangle = (
     <Glyphicon
@@ -37,6 +38,7 @@ const PostsListPresenter = ({
           </th>
           <th>Upvote</th>
           <th>Downvote</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -45,6 +47,7 @@ const PostsListPresenter = ({
             key={post.id}
             upVote={upVote}
             downVote={downVote}
+            deletePost={deletePost}
             {...post}
           />
         )}
