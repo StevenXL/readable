@@ -23,6 +23,14 @@ const PostViewPresenter = ({
 
       <Row>
         <Col xs={12}>
+          <h3>
+            Comment Count: <small>{comments.length}</small>
+          </h3>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col xs={12}>
           <PostForm
             deletePost={deletePost}
             upVotePost={upVotePost}
