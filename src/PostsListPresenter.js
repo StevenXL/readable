@@ -39,6 +39,7 @@ const PostsListPresenter = ({
           <th>Upvote</th>
           <th>Downvote</th>
           <th>Delete</th>
+          <th>Edit</th>
         </tr>
       </thead>
       <tbody>

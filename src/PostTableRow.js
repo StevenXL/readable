@@ -53,6 +53,9 @@ const PostTableRow = ({
         Delete
       </Button>
     </td>
+    <td>
+      <Link to={`/${category}/${id}`}>Edit</Link>
+    </td>
   </tr>;
 
 // SETTINGS
